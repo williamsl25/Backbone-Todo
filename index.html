@@ -1,0 +1,65 @@
+<title>Backbone Todo</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+	<section class="todoapp">
+		<header class="header">
+			<h1>Todos</h1>
+			<input type="text" class="new-todo" placeholder="What do you need to do today?" autofocus />
+		</header>
+
+		<section class="main">
+			<input type="checkbox" class="toggle-all" id="toggle-all">
+			<label for="toggle-all">Mark all as complete</label>
+			<ul class="todo-list"></ul>
+		</section>
+		<footer class="footer"></footer>
+	</section>
+	<div class="info">
+		<p>Double-click to edit a todo</p>
+	</div>
+
+	<!-- Templates -->
+	<script type="text/template" id="item-template">
+		<div class="view">
+			<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
+			<label><%= title %></label>
+			<button class="destroy"></button>
+		</div>
+		<input class="edit" value="<%= title %>">
+	</script>
+
+	<script type="text/template" id="stats-template">
+		<span class="todo-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>
+		<ul class="filters">
+			<li>
+				<a class="selected" href='#/'>All</a>
+			</li>
+			<li>
+				<a href='#/active'>Active</a>
+			</li>
+			<li>
+				<a href='#/completed'>Completed</a>
+			</li>
+		</ul>
+		<% if (completed) { %>
+		<button class="clear-completed">Clear completed (<%= completed %>)</button>
+		<% } %>
+	</script>
+
+	<!-- vendor scripts -->
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/underscore/underscore.js"></script>
+	<script src="bower_components/backbone/backbone.js"></script>
+	<script src="bower_components/backbone.localStorage/backbone.localStorage.js"></script>
+
+	<!-- app scripts -->
+	<script src="js/models/todo.model.js"></script>
+	<script src="js/collections/todo.collection.js"></script>
+	<script src="js/views/app.view.js"></script>
+	<script src="js/views/todo.view.js"></script>
+	<script src="js/routers/router.js"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>
